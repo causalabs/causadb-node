@@ -1,0 +1,11 @@
+{
+  "name": "causadb",
+  "version": "0.0.0",
+  "description": "Causal AI model database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
