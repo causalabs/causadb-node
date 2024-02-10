@@ -40,8 +40,8 @@ export class CausaDB {
      * @param modelName The name of the model.
      * @returns The model object.
      */
-    createModel(modelName: string): Model {
-        return new Model(modelName, this);
+    async createModel(modelName: string): Promise<Model> {
+        return await Model.create(modelName, this);
     }
 
     /**
@@ -62,7 +62,7 @@ export class CausaDB {
         const headers = { 'token': this.tokenSecret };
         try {
             await axios.get(`${causadbUrl}/models/${modelName}`, { headers });
-            return new Model(modelName, this);
+            return Model.create(modelName, this);
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -76,7 +76,8 @@ export class CausaDB {
         const headers = { 'token': this.tokenSecret };
         try {
             const response = await axios.get(`${causadbUrl}/models`, { headers });
-            return response.data.models.map((modelSpec: any) => new Model(modelSpec.name, this));
+            // Print out model names
+            return await Promise.all(response.data.models.map((modelSpec: any) => Model.create(modelSpec.name, this)));
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -88,10 +89,16 @@ export class CausaDB {
      * @returns The data object.
      */
     async getData(dataName: string): Promise<Data> {
+        // Check that dataName is in the list of data (GET data route) and return a Data object
         const headers = { 'token': this.tokenSecret };
         try {
-            await axios.get(`${causadbUrl}/data/${dataName}`, { headers });
-            return new Data(dataName, this);
+            const data_list: any = await axios.get(`${causadbUrl}/data`, { headers });
+            const data_names = data_list.data.data.map((dataSpec: any) => dataSpec.name);
+            if (data_names.includes(dataName)) {
+                return new Data(dataName, this);
+            } else {
+                throw new Error('Data' + dataName + 'not found');
+            }
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }

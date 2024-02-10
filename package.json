@@ -4,7 +4,7 @@
   "description": "Causal AI model database",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "author": "Jordan Hart <jordan@causa.tech>",
   "license": "MIT",

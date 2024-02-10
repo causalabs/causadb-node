@@ -49,7 +49,7 @@ export class Data {
                 });
             })
             .on('end', () => {
-                this.update(dataset);
+                this.push(dataset);
             });
     }
 
@@ -57,12 +57,12 @@ export class Data {
      * Pushes the data to the CausaDB server.
      * @param data The new data.
      */
-    private async update(data: any): Promise<void> {
+    private async push(data: any): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
             const response = await axios.post(`${causadbUrl}/data/${this.dataName}`, data, { headers });
             if (response.data.status !== 'success') {
-                throw new Error(`Failed to update data: ${response.data.message}`);
+                throw new Error(`Failed to push data: ${response.data.message}`);
             }
         } catch (error) {
             throw new Error('CausaDB client failed to connect to server');

@@ -14,13 +14,25 @@ export class Model {
      * @param modelName The name of the model.
      * @param client A CausaDB client.
      */
-    constructor(modelName: string, client: CausaDB) {
+    private constructor(modelName: string, client: CausaDB) {
         this.client = client;
         this.modelName = modelName;
         this.config = {};
+    }
 
-        // Pull config from the server
-        this.update();
+    /**
+     * Creates a new model and adds it to the CausaDB system.
+     * @returns The current state of the model.
+     * @throws Error if the request fails.
+     * @throws Error if the model does not exist.
+    */
+    static async create(modelName: string, client: CausaDB) {
+        let model = new Model(modelName, client);
+
+        await model.pull();
+
+        await model.push();
+        return model;
     }
 
     /**
@@ -42,10 +54,9 @@ export class Model {
     async setNodes(nodes: string[]): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
-            const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
-            this.config = response.data.details.config;
+            await this.pull();
             this.config.nodes = nodes;
-            this.update();
+            await this.push();
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -72,10 +83,9 @@ export class Model {
     async setEdges(edges: [string, string][]): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
-            const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
-            this.config = response.data.details.config;
+            await this.pull();
             this.config.edges = edges;
-            this.update();
+            await this.push();
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -103,10 +113,9 @@ export class Model {
     async setNodeTypes(nodeTypes: any): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
-            const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
-            this.config = response.data.details.config;
+            await this.pull();
             this.config.nodeTypes = nodeTypes;
-            this.update();
+            await this.push();
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -133,7 +142,7 @@ export class Model {
     async attach(dataName: string): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
-            await axios.post(`${causadbUrl}/models/${this.modelName}/attach/${dataName}`, { headers });
+            await axios.post(`${causadbUrl}/models/${this.modelName}/attach/${dataName}`, {}, { headers });
         } catch (error) {
             throw new Error('CausaDB server request failed');
         }
@@ -160,7 +169,7 @@ export class Model {
     async train(wait = true, pollInterval = 0.2): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
-            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/train`, { headers });
+            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/train`, {}, { headers });
             if (response.status === 400) {
                 throw new Error(response.data.detail);
             }
@@ -208,13 +217,29 @@ export class Model {
     }
 
     /**
-     * Pushes the current state of the model to the CausaDB server.
+     * Pushes the current configuration of the model to the CausaDB server.
      */
-    private async update(): Promise<void> {
+    private async push(): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
             await axios.post(`${causadbUrl}/models/${this.modelName}`, this.config, { headers });
         } catch (error) {
+            throw new Error('CausaDB server request failed');
+        }
+    }
+
+    /**
+     * Pulls configuration from the CausaDB server. Do nothing if the model does not exist.
+     */
+    private async pull(): Promise<void> {
+        const headers = { 'token': this.client.tokenSecret };
+        try {
+            const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
+            this.config = response.data.details.config;
+        } catch (error: any) {
+            if (error.response.status === 404) {
+                return;
+            }
             throw new Error('CausaDB server request failed');
         }
     }
