@@ -30,9 +30,9 @@ jobs:
               id: package
               run: |
                   if [[ "${{ github.head_ref }}" == feature/* ]]; then
-                    yarn version --minor
+                    yarn version --minor --no-git-tag-version
                   elif [[ "${{ github.head_ref }}" == patch/* ]]; then
-                    yarn version --patch
+                    yarn version --patch --no-git-tag-version
                   fi
 
             - name: Commit version increment
