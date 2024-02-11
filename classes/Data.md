@@ -40,7 +40,7 @@ Initializes the Data class.
 
 #### Defined in
 
-[data.ts:18](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L18)
+[data.ts:18](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L18)
 
 ## Properties
 
@@ -50,7 +50,7 @@ Initializes the Data class.
 
 #### Defined in
 
-[data.ts:10](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L10)
+[data.ts:10](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L10)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[data.ts:11](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L11)
+[data.ts:11](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L11)
 
 ## Methods
 
@@ -82,7 +82,7 @@ Add data from a CSV file.
 
 #### Defined in
 
-[data.ts:39](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L39)
+[data.ts:39](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L39)
 
 ___
 
@@ -104,7 +104,7 @@ Pushes the data to the CausaDB server.
 
 #### Defined in
 
-[data.ts:60](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L60)
+[data.ts:60](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L60)
 
 ___
 
@@ -120,4 +120,4 @@ Remove the data from the CausaDB system.
 
 #### Defined in
 
-[data.ts:26](https://github.com/causalabs/causadb-node/blob/fa6c692/src/data.ts#L26)
+[data.ts:26](https://github.com/causalabs/causadb-node/blob/49fa231/src/data.ts#L26)

@@ -53,7 +53,7 @@ Initializes the Model class.
 
 #### Defined in
 
-[model.ts:17](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L17)
+[model.ts:17](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L17)
 
 ## Properties
 
@@ -63,7 +63,7 @@ Initializes the Model class.
 
 #### Defined in
 
-[model.ts:8](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L8)
+[model.ts:8](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L8)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[model.ts:10](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L10)
+[model.ts:10](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L10)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[model.ts:9](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L9)
+[model.ts:9](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L9)
 
 ## Methods
 
@@ -105,7 +105,7 @@ Attach data to the model.
 
 #### Defined in
 
-[model.ts:142](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L142)
+[model.ts:142](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L142)
 
 ___
 
@@ -127,7 +127,7 @@ Detach data from the model.
 
 #### Defined in
 
-[model.ts:155](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L155)
+[model.ts:155](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L155)
 
 ___
 
@@ -145,7 +145,7 @@ A list of tuples representing edges.
 
 #### Defined in
 
-[model.ts:98](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L98)
+[model.ts:98](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L98)
 
 ___
 
@@ -163,7 +163,7 @@ A dictionary of node types.
 
 #### Defined in
 
-[model.ts:128](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L128)
+[model.ts:128](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L128)
 
 ___
 
@@ -181,7 +181,7 @@ A list of node names.
 
 #### Defined in
 
-[model.ts:69](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L69)
+[model.ts:69](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L69)
 
 ___
 
@@ -197,7 +197,7 @@ Pulls configuration from the CausaDB server. Do nothing if the model does not ex
 
 #### Defined in
 
-[model.ts:234](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L234)
+[model.ts:234](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L234)
 
 ___
 
@@ -213,7 +213,7 @@ Pushes the current configuration of the model to the CausaDB server.
 
 #### Defined in
 
-[model.ts:222](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L222)
+[model.ts:222](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L222)
 
 ___
 
@@ -229,7 +229,7 @@ Remove the model from the CausaDB system.
 
 #### Defined in
 
-[model.ts:41](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L41)
+[model.ts:41](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L41)
 
 ___
 
@@ -251,7 +251,7 @@ Set the edges of the model.
 
 #### Defined in
 
-[model.ts:83](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L83)
+[model.ts:83](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L83)
 
 ___
 
@@ -273,7 +273,7 @@ Set the node types of the model.
 
 #### Defined in
 
-[model.ts:113](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L113)
+[model.ts:113](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L113)
 
 ___
 
@@ -295,7 +295,7 @@ Set the nodes of the model.
 
 #### Defined in
 
-[model.ts:54](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L54)
+[model.ts:54](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L54)
 
 ___
 
@@ -319,7 +319,7 @@ A dictionary representing the result of the action.
 
 #### Defined in
 
-[model.ts:206](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L206)
+[model.ts:206](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L206)
 
 ___
 
@@ -337,7 +337,7 @@ The status of the model.
 
 #### Defined in
 
-[model.ts:191](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L191)
+[model.ts:191](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L191)
 
 ___
 
@@ -360,7 +360,7 @@ Train the model.
 
 #### Defined in
 
-[model.ts:169](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L169)
+[model.ts:169](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L169)
 
 ___
 
@@ -393,4 +393,4 @@ Error if the model does not exist.
 
 #### Defined in
 
-[model.ts:29](https://github.com/causalabs/causadb-node/blob/fa6c692/src/model.ts#L29)
+[model.ts:29](https://github.com/causalabs/causadb-node/blob/49fa231/src/model.ts#L29)
