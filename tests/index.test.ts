@@ -2,23 +2,29 @@ import { CausaDB } from '../src/causadb';
 import { Model } from '../src/model';
 import { Data } from '../src/data';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const causadbToken: string = process.env.CAUSADB_TOKEN || "";
+
 let client: CausaDB;
 
 beforeEach(async () => {
     client = new CausaDB();
-    await client.setToken("test-token-id", "test-token-secret");
+    await client.setToken("test-token-id", causadbToken);
 });
 
 test('end-to-end workflow', async () => {
     // client initialization
     expect(client).not.toBeNull();
     expect(client.tokenId).toBe("test-token-id");
-    expect(client.tokenSecret).toBe("test-token-secret");
+    expect(client.tokenSecret).toBe(causadbToken);
 
     // bad tokens
     await expect(client.setToken("bad-token-id", "bad-token-secret")).rejects.toThrow();
     expect(client.tokenId).toBe("test-token-id");
-    expect(client.tokenSecret).toBe("test-token-secret");
+    expect(client.tokenSecret).toBe(causadbToken);
 
     // data add
     await client.addData("test-data-2").fromCSV("tests/test-data.csv");
