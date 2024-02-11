@@ -1,4 +1,4 @@
-name: Publish to NPM
+name: Deploy to NPM
 
 on:
     pull_request:
@@ -8,7 +8,7 @@ on:
             - main
 
 jobs:
-    test:
+    deploy:
         if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
 
@@ -20,19 +20,17 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: "20"
+                  always-auth: true
 
             - name: Install dependencies
               run: yarn install
-
-            - name: Run tests
-              run: yarn test
 
             - name: Bump version
               id: package
               run: |
                   if [[ "${{ github.head_ref }}" == feature/* ]]; then
                     yarn version --minor
-                  elif [[ "${{ github.head_ref }}" == bugfix/* ]]; then
+                  elif [[ "${{ github.head_ref }}" == patch/* ]]; then
                     yarn version --patch
                   fi
 
