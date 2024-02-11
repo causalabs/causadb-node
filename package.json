@@ -1,7 +1,7 @@
 {
   "name": "causadb",
-  "version": "0.0.0",
-  "description": "Causal AI model database",
+  "version": "1.0.0",
+  "description": "Node client for CausaDB, a cloud platform for building and using causal AI.",
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand"
