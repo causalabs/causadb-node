@@ -37,7 +37,7 @@ Initializes the CausaDB client.
 
 #### Defined in
 
-[causadb.ts:15](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L15)
+[causadb.ts:15](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L15)
 
 ## Properties
 
@@ -47,7 +47,7 @@ Initializes the CausaDB client.
 
 #### Defined in
 
-[causadb.ts:9](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L9)
+[causadb.ts:9](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L9)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[causadb.ts:10](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L10)
+[causadb.ts:10](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L10)
 
 ## Methods
 
@@ -81,7 +81,7 @@ The data object.
 
 #### Defined in
 
-[causadb.ts:52](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L52)
+[causadb.ts:52](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L52)
 
 ___
 
@@ -105,7 +105,7 @@ The model object.
 
 #### Defined in
 
-[causadb.ts:43](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L43)
+[causadb.ts:43](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L43)
 
 ___
 
@@ -129,7 +129,7 @@ The data object.
 
 #### Defined in
 
-[causadb.ts:91](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L91)
+[causadb.ts:91](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L91)
 
 ___
 
@@ -153,7 +153,7 @@ The model object.
 
 #### Defined in
 
-[causadb.ts:61](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L61)
+[causadb.ts:61](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L61)
 
 ___
 
@@ -171,7 +171,7 @@ A list of data objects.
 
 #### Defined in
 
-[causadb.ts:111](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L111)
+[causadb.ts:111](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L111)
 
 ___
 
@@ -189,7 +189,7 @@ A list of model objects.
 
 #### Defined in
 
-[causadb.ts:75](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L75)
+[causadb.ts:75](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L75)
 
 ___
 
@@ -214,4 +214,4 @@ True if the token is valid, False otherwise.
 
 #### Defined in
 
-[causadb.ts:26](https://github.com/causalabs/causadb-node/blob/49fa231/src/causadb.ts#L26)
+[causadb.ts:26](https://github.com/causalabs/causadb-node/blob/68bf704/src/causadb.ts#L26)
