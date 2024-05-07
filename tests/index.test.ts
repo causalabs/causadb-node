@@ -95,6 +95,30 @@ test('end-to-end workflow', async () => {
     expect(typeof outcome).toBe('object');
     expect(outcome).toHaveProperty("median");
 
+    // model findBestActions
+    const bestActions = await model.findBestActions(
+        {"y": 0.5}, // Targets
+        ["x"], // Actionable nodes
+        {"z": 0.5}, // Fixed nodes
+        {"x": [0, 1]} // Constraints
+    );
+    expect(bestActions).toHaveProperty("x");
+
+    // Test for model causalEffects
+    const causalEffects = await model.causalEffects({"x": [0, 1]});
+    expect(causalEffects).toHaveProperty("median");
+    expect(causalEffects).toHaveProperty("lower");
+    expect(causalEffects).toHaveProperty("upper");
+    // Check that the indexes ('y' and 'z') and the types of columns ('median', 'lower', 'upper') exist
+    expect(Object.keys(causalEffects.median)).toEqual(expect.arrayContaining(["y", "z"]));
+
+    // Test for model causalAttributions
+    const causalAttributions = await model.causalAttributions("x");
+    expect(causalAttributions).toHaveProperty("x");
+    // Ensure that the returned columns include 'x'
+    expect(Object.keys(causalAttributions.x)).toEqual(expect.arrayContaining(["y", "z"]));
+
+
     // model detach
     const modelDetach = await client.getModel("test-model-12345");
     await modelDetach.detach("test-data-2");
