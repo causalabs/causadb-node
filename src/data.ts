@@ -54,6 +54,13 @@ export class Data {
     }
 
     /**
+     * Add data from a JSON object.
+     */
+    async fromJSON(data: any): Promise<void> {
+        this.push(data);
+    }
+
+    /**
      * Pushes the data to the CausaDB server.
      * @param data The new data.
      */

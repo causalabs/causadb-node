@@ -91,10 +91,9 @@ test('end-to-end workflow', async () => {
 
     // model simulate action
     const modelSimulate = await client.getModel("test-model-12345");
-    const outcome = await modelSimulate.simulateAction({"x": [0, 1]});
+    const outcome = await modelSimulate.simulateActions({"x": [0, 1]});
     expect(typeof outcome).toBe('object');
-    expect(outcome["ate"]["x"]).toBe(1.0);
-    expect(outcome).toHaveProperty("ate_std");
+    expect(outcome).toHaveProperty("median");
 
     // model detach
     const modelDetach = await client.getModel("test-model-12345");
