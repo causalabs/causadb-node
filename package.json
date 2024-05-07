@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose --runInBand --coverage",
-    "docs": "typedoc --out docs --plugin typedoc-plugin-markdown ./src && node ./scripts/convert_docs.js"
+    "docs": "typedoc --disableSources --out docs --plugin typedoc-plugin-markdown ./src && node ./scripts/convert_docs.js"
   },
   "author": "Jordan Hart <jordan@causa.tech>",
   "license": "MIT",
