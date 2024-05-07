@@ -17,8 +17,4 @@ Add data to the CausaDB system.
 
 The data object.
 
-## Defined in
-
-[causadb.ts:52](https://github.com/causalabs/causadb-node/blob/f466638/src/causadb.ts#L52)
-
 ___

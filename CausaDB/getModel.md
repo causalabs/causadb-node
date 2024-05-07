@@ -17,8 +17,4 @@ Get a model by name.
 
 The model object.
 
-## Defined in
-
-[causadb.ts:61](https://github.com/causalabs/causadb-node/blob/f466638/src/causadb.ts#L61)
-
 ___

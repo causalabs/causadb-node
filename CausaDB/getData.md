@@ -17,8 +17,4 @@ Get a data by name.
 
 The data object.
 
-## Defined in
-
-[causadb.ts:91](https://github.com/causalabs/causadb-node/blob/f466638/src/causadb.ts#L91)
-
 ___

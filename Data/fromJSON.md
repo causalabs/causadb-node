@@ -15,8 +15,4 @@ Add data from a JSON object.
 
 `Promise`\<`void`\>
 
-## Defined in
-
-[data.ts:59](https://github.com/causalabs/causadb-node/blob/f466638/src/data.ts#L59)
-
 ___

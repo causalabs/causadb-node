@@ -25,7 +25,3 @@ Error if the request fails.
 **`Throws`**
 
 Error if the model does not exist.
-
-## Defined in
-
-[model.ts:29](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L29)

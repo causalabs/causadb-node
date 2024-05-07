@@ -18,8 +18,4 @@ Get the causal attributions for an outcome within the model.
 
 A Promise resolving to the causal attributions for the specified outcome.
 
-## Defined in
-
-[model.ts:319](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L319)
-
 ___

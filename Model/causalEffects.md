@@ -20,8 +20,4 @@ Get the causal effects of actions on the model.
 
 A Promise resolving to the causal effects of the actions.
 
-## Defined in
-
-[model.ts:261](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L261)
-
 ___

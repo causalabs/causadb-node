@@ -15,8 +15,4 @@ Pushes the data to the CausaDB server.
 
 `Promise`\<`void`\>
 
-## Defined in
-
-[data.ts:67](https://github.com/causalabs/causadb-node/blob/f466638/src/data.ts#L67)
-
 ___

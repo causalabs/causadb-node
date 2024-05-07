@@ -15,8 +15,4 @@ Detach data from the model.
 
 `Promise`\<`void`\>
 
-## Defined in
-
-[model.ts:155](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L155)
-
 ___

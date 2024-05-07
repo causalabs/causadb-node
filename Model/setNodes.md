@@ -15,8 +15,4 @@ Set the nodes of the model.
 
 `Promise`\<`void`\>
 
-## Defined in
-
-[model.ts:54](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L54)
-
 ___

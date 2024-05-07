@@ -22,8 +22,4 @@ Find the optimal actions for specified targets within the model.
 
 A Promise resolving to the optimal actions.
 
-## Defined in
-
-[model.ts:291](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L291)
-
 ___

@@ -15,8 +15,4 @@ Add data from a CSV file.
 
 `Promise`\<`void`\>
 
-## Defined in
-
-[data.ts:39](https://github.com/causalabs/causadb-node/blob/f466638/src/data.ts#L39)
-
 ___

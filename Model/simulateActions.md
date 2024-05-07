@@ -20,8 +20,4 @@ Simulate actions on the model.
 
 A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
 
-## Defined in
-
-[model.ts:209](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L209)
-
 ___

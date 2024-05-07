@@ -11,8 +11,4 @@ Get the nodes of the model.
 
 A list of node names.
 
-## Defined in
-
-[model.ts:69](https://github.com/causalabs/causadb-node/blob/f466638/src/model.ts#L69)
-
 ___
