@@ -199,22 +199,44 @@ export class Model {
     }
 
     /**
-     * Simulate an action on the model.
-     * @param action A dictionary representing the action.
-     * @returns A dictionary representing the result of the action.
+     * Simulate actions on the model.
+     * @param {Object} actions A dictionary representing the actions to simulate.
+     * @param {Object} [fixed={}] A dictionary representing the fixed nodes.
+     * @param {number} [interval=0.9] The interval at which to simulate the actions.
+     * @param {boolean} [observationNoise=false] Whether to include observation noise.
+     * @returns {Promise<Object>} A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
      */
-    async simulateAction(action: any): Promise<any> {
+    async simulateActions(actions: any, fixed = {}, interval = 0.9, observationNoise = false): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
+
+        const query = {
+            actions,
+            fixed,
+            interval,
+            observation_noise: observationNoise
+        };
+
         try {
-            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/simulate-action`, action, { headers });
-            if ('outcome' in response.data) {
-                return response.data.outcome;
+            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/simulate-actions`, query, { headers });
+            if (response.status !== 200) {
+                throw new Error(response.data.detail || 'CausaDB server request failed - unexpected status code.');
             }
-            throw new Error('CausaDB server request failed');
-        } catch (error) {
-            throw new Error('CausaDB server request failed');
+
+            const responseData = response.data;
+            if ('outcome' in responseData) {
+                return {
+                    median: responseData.outcome.median,
+                    lower: responseData.outcome.lower,
+                    upper: responseData.outcome.upper
+                };
+            }
+
+            throw new Error('CausaDB server request failed - unexpected response structure.');
+        } catch (error: any) {
+            throw new Error(`CausaDB server request failed: ${error.message}`);
         }
     }
+
 
     /**
      * Pushes the current configuration of the model to the CausaDB server.
@@ -225,6 +247,90 @@ export class Model {
             await axios.post(`${causadbUrl}/models/${this.modelName}`, this.config, { headers });
         } catch (error) {
             throw new Error('CausaDB server request failed');
+        }
+    }
+
+    /**
+     * Get the causal effects of actions on the model.
+     * @param actions A dictionary representing the actions to simulate.
+     * @param fixed A dictionary representing fixed nodes if any.
+     * @param interval The interval at which to simulate the action.
+     * @param observationNoise Whether to include observation noise.
+     * @returns A Promise resolving to the causal effects of the actions.
+     */
+    async causalEffects(actions: any, fixed = {}, interval = 0.9, observationNoise = false): Promise<any> {
+        const headers = { 'token': this.client.tokenSecret };
+        const query = {
+            actions,
+            fixed,
+            interval,
+            observation_noise: observationNoise
+        };
+
+        try {
+            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/causal-effects`, query, { headers });
+            if (response.status !== 200) {
+                throw new Error(response.data.detail || 'CausaDB server request failed - unexpected status code.');
+            }
+            return response.data.outcome;
+        } catch (error: any) {
+            throw new Error(`CausaDB server request failed: ${error.message}`);
+        }
+    }
+
+    /**
+     * Find the optimal actions for specified targets within the model.
+     * @param targets A dictionary of target outcomes to achieve.
+     * @param actionable A list of actionable node names.
+     * @param fixed A dictionary of fixed nodes, if any.
+     * @param constraints Constraints on the actions, if any.
+     * @param data The data to use for the simulation, if any.
+     * @param targetImportance Importance weights for the targets.
+     * @returns A Promise resolving to the optimal actions.
+     */
+    async findBestActions(targets: any, actionable: string[], fixed = {}, constraints = {}, data?: any, targetImportance = {}): Promise<any> {
+        const headers = { 'token': this.client.tokenSecret };
+        const query = {
+            targets,
+            actionable,
+            fixed,
+            constraints,
+            data,
+            target_importance: targetImportance
+        };
+
+        try {
+            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/find-best-actions`, query, { headers });
+            if (response.status !== 200) {
+                throw new Error(response.data.detail || 'CausaDB server request failed - unexpected status code.');
+            }
+            return response.data.best_actions;
+        } catch (error: any) {
+            throw new Error(`CausaDB server request failed: ${error.message}`);
+        }
+    }
+
+    /**
+     * Get the causal attributions for an outcome within the model.
+     * @param outcome The name of the outcome node.
+     * @param normalise Whether to normalize the causal attributions.
+     * @returns A Promise resolving to the causal attributions for the specified outcome.
+     */
+    async causalAttributions(outcome: string, normalise: boolean = false): Promise<any> {
+        const headers = { 'token': this.client.tokenSecret };
+        const query = {
+            outcome,
+            normalise
+        };
+
+        try {
+            const response = await axios.post(`${causadbUrl}/models/${this.modelName}/causal-attributions`, query, { headers });
+            if (response.status !== 200) {
+                throw new Error(response.data.detail || 'CausaDB server request failed - unexpected status code.');
+            }
+            return response.data.outcome;
+        } catch (error: any) {
+            throw new Error(`CausaDB server request failed: ${error.message}`);
         }
     }
 
