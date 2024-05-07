@@ -1,7 +1,7 @@
 # getModel
 
 
-▸ **getModel**(`modelName`): `Promise`\<[`Model`](Model.md)\>
+▸ **getModel**(`modelName`): `Promise`\<``Model``\>
 
 Get a model by name.
 
@@ -13,7 +13,7 @@ Get a model by name.
 
 ## Returns
 
-`Promise`\<[`Model`](Model.md)\>
+`Promise`\<``Model``\>
 
 The model object.
 

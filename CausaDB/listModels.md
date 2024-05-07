@@ -1,13 +1,13 @@
 # listModels
 
 
-▸ **listModels**(): `Promise`\<[`Model`](Model.md)[]\>
+▸ **listModels**(): `Promise`\<``Model``[]\>
 
 List all models.
 
 ## Returns
 
-`Promise`\<[`Model`](Model.md)[]\>
+`Promise`\<``Model``[]\>
 
 A list of model objects.
 

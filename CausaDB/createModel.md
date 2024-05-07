@@ -1,7 +1,7 @@
 # createModel
 
 
-▸ **createModel**(`modelName`): `Promise`\<[`Model`](Model.md)\>
+▸ **createModel**(`modelName`): `Promise`\<``Model``\>
 
 Create a model and add it to the CausaDB system.
 
@@ -13,7 +13,7 @@ Create a model and add it to the CausaDB system.
 
 ## Returns
 
-`Promise`\<[`Model`](Model.md)\>
+`Promise`\<``Model``\>
 
 The model object.
 

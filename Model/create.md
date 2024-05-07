@@ -1,7 +1,7 @@
 # create
 
 
-▸ **create**(`modelName`, `client`): `Promise`\<[`Model`](Model.md)\>
+▸ **create**(`modelName`, `client`): `Promise`\<``Model``\>
 
 Creates a new model and adds it to the CausaDB system.
 
@@ -10,11 +10,11 @@ Creates a new model and adds it to the CausaDB system.
 | Name | Type |
 | :------ | :------ |
 | `modelName` | `string` |
-| `client` | [`CausaDB`](CausaDB.md) |
+| `client` | ``CausaDB`` |
 
 ## Returns
 
-`Promise`\<[`Model`](Model.md)\>
+`Promise`\<``Model``\>
 
 The current state of the model.
 

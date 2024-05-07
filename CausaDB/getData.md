@@ -1,7 +1,7 @@
 # getData
 
 
-▸ **getData**(`dataName`): `Promise`\<[`Data`](Data.md)\>
+▸ **getData**(`dataName`): `Promise`\<``Data``\>
 
 Get a data by name.
 
@@ -13,7 +13,7 @@ Get a data by name.
 
 ## Returns
 
-`Promise`\<[`Data`](Data.md)\>
+`Promise`\<``Data``\>
 
 The data object.
 

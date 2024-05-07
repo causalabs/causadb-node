@@ -1,7 +1,7 @@
 # addData
 
 
-▸ **addData**(`dataName`): [`Data`](Data.md)
+▸ **addData**(`dataName`): ``Data``
 
 Add data to the CausaDB system.
 
@@ -13,7 +13,7 @@ Add data to the CausaDB system.
 
 ## Returns
 
-[`Data`](Data.md)
+``Data``
 
 The data object.
 

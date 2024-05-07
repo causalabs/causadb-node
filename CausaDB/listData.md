@@ -1,13 +1,13 @@
 # listData
 
 
-▸ **listData**(): `Promise`\<[`Data`](Data.md)[]\>
+▸ **listData**(): `Promise`\<``Data``[]\>
 
 List all data.
 
 ## Returns
 
-`Promise`\<[`Data`](Data.md)[]\>
+`Promise`\<``Data``[]\>
 
 A list of data objects.
 
