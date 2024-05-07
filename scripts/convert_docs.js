@@ -53,11 +53,14 @@ fs.readdir(inputDirectory, (err, files) => {
                             .split("\n")[0]
                             .replace("### ", "")
                             .trim();
-                        // Prepare content, adjusting header levels
+                        // Prepare content, adjusting header levels. Also replace links with only the text [`Data`](Data.md) -> `Data`
                         const content = `# ${name}\n${method
                             .substring(name.length)
                             .replace(/####/g, "##")
-                            .replace(/###/g, "#")}`;
+                            .replace(/###/g, "#")}`.replace(
+                            /\[([^\]]+)\]\(([^)]+)\)/g,
+                            "`$1`"
+                        );
 
                         // Write the method to a file
                         fs.writeFile(
