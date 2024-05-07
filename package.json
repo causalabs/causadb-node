@@ -4,7 +4,7 @@
   "description": "Node client for CausaDB, a cloud platform for building and using causal AI.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --runInBand",
+    "test": "jest --verbose --runInBand --coverage",
     "docs": "typedoc --out docs --plugin typedoc-plugin-markdown ./src"
   },
   "author": "Jordan Hart <jordan@causa.tech>",
