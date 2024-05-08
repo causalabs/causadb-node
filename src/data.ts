@@ -6,6 +6,9 @@ import { getCausadbUrl } from './utils';
 
 const causadbUrl = getCausadbUrl();
 
+/**
+ * Data class for interacting with data in the CausaDB system.
+ */
 export class Data {
     public client: CausaDB;
     public dataName: string;
@@ -14,7 +17,14 @@ export class Data {
      * Initializes the Data class.
      * @param dataName The name of the data.
      * @param client A CausaDB client.
-     * 
+     * @example
+     * ```typescript
+     * import { CausaDB, Data } from './causadb';
+     *
+     * const client = new CausaDB();
+     * await client.setToken('test-token-id', 'test-token-secret');
+     * const data = new Data('test-data', client);
+     * ```
      */
     constructor(dataName: string, client: CausaDB) {
         this.dataName = dataName;
@@ -23,13 +33,12 @@ export class Data {
 
     /**
      * Remove the data from the CausaDB system.
-     * @returns Promise<void> 
-     * 
+     * @returns Promise<void>
+     * @throws {Error} If the server request fails.
      * @example
      * ```typescript
-     * data.remove().then(() => {
-     *    console.log('Data removed');
-     * });
+     * const data = client.getData('test-data');
+     * await data.remove();
      * ```
      */
     async remove(): Promise<void> {
@@ -44,6 +53,15 @@ export class Data {
     /**
      * Add data from a CSV file.
      * @param filepath The path to the CSV file.
+     * @returns Promise<void>
+     * @throws {Error} If pushing data to the server fails.
+     * @example
+     * ```typescript
+     * const client = new CausaDB();
+     * await client.setToken('test-token-id', 'test-token-secret');
+     * const data = new Data('test-data', client);
+     * await data.fromCSV('path/to/data.csv');
+     * ```
      */
     async fromCSV(filepath: string): Promise<void> {
         const dataset: any = {};
@@ -57,21 +75,37 @@ export class Data {
                     dataset[key].push(row[key]);
                 });
             })
-            .on('end', () => {
-                this.push(dataset);
+            .on('end', async () => {
+                await this.push(dataset);
             });
     }
 
     /**
      * Add data from a JSON object.
+     * @param data The JSON object representing the data.
+     * @returns Promise<void>
+     * @throws {Error} If pushing data to the server fails.
+     * @example
+     * ```typescript
+     * const client = new CausaDB();
+     * await client.setToken('test-token-id', 'test-token-secret');
+     * const data = new Data('test-data', client);
+     * await data.fromJSON({
+     *     "column1": [1, 2, 3],
+     *     "column2": [4, 5, 6]
+     * });
+     * ```
      */
     async fromJSON(data: any): Promise<void> {
-        this.push(data);
+        await this.push(data);
     }
 
     /**
      * Pushes the data to the CausaDB server.
      * @param data The new data.
+     * @returns Promise<void>
+     * @throws {Error} If the server request fails.
+     * @private
      */
     private async push(data: any): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
