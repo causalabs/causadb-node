@@ -14,6 +14,7 @@ export class Data {
      * Initializes the Data class.
      * @param dataName The name of the data.
      * @param client A CausaDB client.
+     * 
      */
     constructor(dataName: string, client: CausaDB) {
         this.dataName = dataName;
@@ -22,6 +23,14 @@ export class Data {
 
     /**
      * Remove the data from the CausaDB system.
+     * @returns Promise<void> 
+     * 
+     * @example
+     * ```typescript
+     * data.remove().then(() => {
+     *    console.log('Data removed');
+     * });
+     * ```
      */
     async remove(): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
