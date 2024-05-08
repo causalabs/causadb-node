@@ -11,8 +11,10 @@ export class Model {
 
     /**
      * Initializes the Model class.
+     * Represents a model within the CausaDB system.
      * @param modelName The name of the model.
      * @param client A CausaDB client.
+     * @private
      */
     private constructor(modelName: string, client: CausaDB) {
         this.client = client;
@@ -22,21 +24,36 @@ export class Model {
 
     /**
      * Creates a new model and adds it to the CausaDB system.
+     * Retrieves any existing configuration from the server and then updates the server with any new configurations.
+     * @param modelName The name of the model to create.
+     * @param client A CausaDB client.
      * @returns The current state of the model.
-     * @throws Error if the request fails.
-     * @throws Error if the model does not exist.
-    */
-    static async create(modelName: string, client: CausaDB) {
-        let model = new Model(modelName, client);
+     * @throws {Error} If the request fails or the model does not exist.
+     * @example
+     * ```typescript
+     * const client = new CausaDB();
+     * await client.setToken('test-token-id', 'test-token-secret');
+     * const model = await Model.create('test-model', client);
+     * ```
+     */
+    static async create(modelName: string, client: CausaDB): Promise<Model> {
+        const model = new Model(modelName, client);
 
         await model.pull();
-
         await model.push();
         return model;
     }
 
     /**
      * Remove the model from the CausaDB system.
+     * Deletes the model's configuration and data from the server.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.remove();
+     * ```
      */
     async remove(): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
@@ -49,10 +66,17 @@ export class Model {
 
     /**
      * Set the nodes of the model.
+     * Nodes represent individual variables or features in the model.
      * @param nodes A list of node names.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.setNodes(['x', 'y', 'z']);
+     * ```
      */
     async setNodes(nodes: string[]): Promise<void> {
-        const headers = { 'token': this.client.tokenSecret };
         try {
             await this.pull();
             this.config.nodes = nodes;
@@ -64,7 +88,14 @@ export class Model {
 
     /**
      * Get the nodes of the model.
+     * Nodes represent individual variables or features in the model.
      * @returns A list of node names.
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const nodes = await model.getNodes();
+     * ```
      */
     async getNodes(): Promise<string[]> {
         const headers = { 'token': this.client.tokenSecret };
@@ -78,10 +109,17 @@ export class Model {
 
     /**
      * Set the edges of the model.
-     * @param edges A list of tuples representing edges.
+     * Edges represent relationships between nodes.
+     * @param edges A list of tuples representing edges between nodes.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.setEdges([['x', 'y'], ['y', 'z']]);
+     * ```
      */
     async setEdges(edges: [string, string][]): Promise<void> {
-        const headers = { 'token': this.client.tokenSecret };
         try {
             await this.pull();
             this.config.edges = edges;
@@ -93,7 +131,14 @@ export class Model {
 
     /**
      * Get the edges of the model.
-     * @returns A list of tuples representing edges.
+     * Edges represent relationships between nodes.
+     * @returns A list of tuples representing edges between nodes.
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const edges = await model.getEdges();
+     * ```
      */
     async getEdges(): Promise<[string, string][]> {
         const headers = { 'token': this.client.tokenSecret };
@@ -108,10 +153,17 @@ export class Model {
 
     /**
      * Set the node types of the model.
+     * Node types define the type of data each node represents.
      * @param nodeTypes A dictionary of node types.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.setNodeTypes({ 'x': 'continuous', 'y': 'categorical' });
+     * ```
      */
     async setNodeTypes(nodeTypes: any): Promise<void> {
-        const headers = { 'token': this.client.tokenSecret };
         try {
             await this.pull();
             this.config.nodeTypes = nodeTypes;
@@ -123,7 +175,14 @@ export class Model {
 
     /**
      * Get the node types of the model.
+     * Node types define the type of data each node represents.
      * @returns A dictionary of node types.
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const nodeTypes = await model.getNodeTypes();
+     * ```
      */
     async getNodeTypes(): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
@@ -137,7 +196,15 @@ export class Model {
 
     /**
      * Attach data to the model.
+     * The data will be used during model training and inference.
      * @param dataName The name of the data to attach.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.attach('test-data');
+     * ```
      */
     async attach(dataName: string): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
@@ -150,7 +217,15 @@ export class Model {
 
     /**
      * Detach data from the model.
+     * Detaching removes the association of the data with the model.
      * @param dataName The name of the data to detach.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.detach('test-data');
+     * ```
      */
     async detach(dataName: string): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
@@ -163,8 +238,16 @@ export class Model {
 
     /**
      * Train the model.
+     * Training updates the model parameters based on the attached data.
      * @param wait Whether to wait for the model to finish training.
      * @param pollInterval The interval at which to poll the server for the model status.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * await model.train();
+     * ```
      */
     async train(wait = true, pollInterval = 0.2): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
@@ -175,7 +258,6 @@ export class Model {
             }
             if (wait) {
                 while (await this.status() !== 'trained') {
-                    // Try again in 200ms
                     await new Promise(resolve => setTimeout(resolve, pollInterval * 1000));
                 }
             }
@@ -186,7 +268,14 @@ export class Model {
 
     /**
      * Get the status of the model.
+     * The status indicates the current state of the model (e.g., 'trained', 'untrained').
      * @returns The status of the model.
+     * @throws {Error} If the server request fails.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const status = await model.status();
+     * ```
      */
     async status(): Promise<string> {
         const headers = { 'token': this.client.tokenSecret };
@@ -198,13 +287,22 @@ export class Model {
         }
     }
 
+
     /**
      * Simulate actions on the model.
+     * Simulates the effects of specified actions on model outcomes, providing an estimation of the resulting changes.
      * @param {Object} actions A dictionary representing the actions to simulate.
      * @param {Object} [fixed={}] A dictionary representing the fixed nodes.
      * @param {number} [interval=0.9] The interval at which to simulate the actions.
      * @param {boolean} [observationNoise=false] Whether to include observation noise.
      * @returns {Promise<Object>} A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
+     * @throws {Error} If the server request fails or returns an unexpected status code.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const outcome = await model.simulateActions({ 'x': [0, 1] });
+     * console.log(outcome);
+     * ```
      */
     async simulateActions(actions: any, fixed = {}, interval = 0.9, observationNoise = false): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
@@ -227,7 +325,7 @@ export class Model {
                 return {
                     median: responseData.outcome.median,
                     lower: responseData.outcome.lower,
-                    upper: responseData.outcome.upper
+                    upper: responseData.upper
                 };
             }
 
@@ -237,9 +335,12 @@ export class Model {
         }
     }
 
-
     /**
      * Pushes the current configuration of the model to the CausaDB server.
+     * This function ensures that any local changes to the model's configuration are reflected on the server.
+     * @returns {Promise<void>}
+     * @throws {Error} If the server request fails.
+     * @private
      */
     private async push(): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
@@ -252,11 +353,19 @@ export class Model {
 
     /**
      * Get the causal effects of actions on the model.
+     * This function estimates the causal impact of specified actions on the model outcomes.
      * @param actions A dictionary representing the actions to simulate.
-     * @param fixed A dictionary representing fixed nodes if any.
+     * @param fixed A dictionary representing fixed nodes, if any.
      * @param interval The interval at which to simulate the action.
      * @param observationNoise Whether to include observation noise.
-     * @returns A Promise resolving to the causal effects of the actions.
+     * @returns A Promise resolving to the causal effects of the actions, including median, lower, and upper outcome estimates.
+     * @throws {Error} If the server request fails or returns an unexpected status code.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const causalEffects = await model.causalEffects({ 'x': [0, 1] });
+     * console.log(causalEffects);
+     * ```
      */
     async causalEffects(actions: any, fixed = {}, interval = 0.9, observationNoise = false): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
@@ -280,6 +389,7 @@ export class Model {
 
     /**
      * Find the optimal actions for specified targets within the model.
+     * This function identifies the actions that are most likely to achieve desired targets.
      * @param targets A dictionary of target outcomes to achieve.
      * @param actionable A list of actionable node names.
      * @param fixed A dictionary of fixed nodes, if any.
@@ -287,6 +397,18 @@ export class Model {
      * @param data The data to use for the simulation, if any.
      * @param targetImportance Importance weights for the targets.
      * @returns A Promise resolving to the optimal actions.
+     * @throws {Error} If the server request fails or returns an unexpected status code.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const bestActions = await model.findBestActions(
+     *     { 'y': 0.5 }, // Targets
+     *     ['x'], // Actionable nodes
+     *     { 'z': 0.5 }, // Fixed nodes
+     *     { 'x': [0, 1] } // Constraints
+     * );
+     * console.log(bestActions);
+     * ```
      */
     async findBestActions(targets: any, actionable: string[], fixed = {}, constraints = {}, data?: any, targetImportance = {}): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
@@ -312,9 +434,17 @@ export class Model {
 
     /**
      * Get the causal attributions for an outcome within the model.
+     * Causal attributions represent the contribution of each node to an outcome.
      * @param outcome The name of the outcome node.
      * @param normalise Whether to normalize the causal attributions.
      * @returns A Promise resolving to the causal attributions for the specified outcome.
+     * @throws {Error} If the server request fails or returns an unexpected status code.
+     * @example
+     * ```typescript
+     * const model = await client.getModel('test-model');
+     * const attributions = await model.causalAttributions('x');
+     * console.log(attributions);
+     * ```
      */
     async causalAttributions(outcome: string, normalise: boolean = false): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
@@ -333,6 +463,7 @@ export class Model {
             throw new Error(`CausaDB server request failed: ${error.message}`);
         }
     }
+
 
     /**
      * Pulls configuration from the CausaDB server. Do nothing if the model does not exist.
