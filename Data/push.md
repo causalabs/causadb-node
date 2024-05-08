@@ -15,4 +15,10 @@ Pushes the data to the CausaDB server.
 
 `Promise`\<`void`\>
 
+Promise<void>
+
+**`Throws`**
+
+If the server request fails.
+
 ___

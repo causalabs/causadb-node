@@ -4,6 +4,7 @@
 ▸ **findBestActions**(`targets`, `actionable`, `fixed?`, `constraints?`, `data?`, `targetImportance?`): `Promise`\<`any`\>
 
 Find the optimal actions for specified targets within the model.
+This function identifies the actions that are most likely to achieve desired targets.
 
 ## Parameters
 
@@ -21,5 +22,22 @@ Find the optimal actions for specified targets within the model.
 `Promise`\<`any`\>
 
 A Promise resolving to the optimal actions.
+
+**`Throws`**
+
+If the server request fails or returns an unexpected status code.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+const bestActions = await model.findBestActions(
+    { 'y': 0.5 }, // Targets
+    ['x'], // Actionable nodes
+    { 'z': 0.5 }, // Fixed nodes
+    { 'x': [0, 1] } // Constraints
+);
+console.log(bestActions);
+```
 
 ___

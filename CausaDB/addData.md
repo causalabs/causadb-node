@@ -3,7 +3,7 @@
 
 ▸ **addData**(`dataName`): ``Data``
 
-Add data to the CausaDB system.
+Add data to the CausaDB system. This can be either data stored directly on the CausaDB cloud or data stored externally and accessed via credentials.
 
 ## Parameters
 
@@ -16,5 +16,14 @@ Add data to the CausaDB system.
 ``Data``
 
 The data object.
+
+**`Example`**
+
+```typescript
+const client = new CausaDB();
+await client.setToken('test-token-id', 'test-token-secret');
+const data = client.addData('test-data');
+await data.fromCSV('path/to/data.csv');
+```
 
 ___

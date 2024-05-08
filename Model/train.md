@@ -4,6 +4,7 @@
 ▸ **train**(`wait?`, `pollInterval?`): `Promise`\<`void`\>
 
 Train the model.
+Training updates the model parameters based on the attached data.
 
 ## Parameters
 
@@ -15,5 +16,16 @@ Train the model.
 ## Returns
 
 `Promise`\<`void`\>
+
+**`Throws`**
+
+If the server request fails.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+await model.train();
+```
 
 ___

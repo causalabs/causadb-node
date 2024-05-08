@@ -4,15 +4,27 @@
 ▸ **setEdges**(`edges`): `Promise`\<`void`\>
 
 Set the edges of the model.
+Edges represent relationships between nodes.
 
 ## Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `edges` | [`string`, `string`][] | A list of tuples representing edges. |
+| `edges` | [`string`, `string`][] | A list of tuples representing edges between nodes. |
 
 ## Returns
 
 `Promise`\<`void`\>
+
+**`Throws`**
+
+If the server request fails.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+await model.setEdges([['x', 'y'], ['y', 'z']]);
+```
 
 ___

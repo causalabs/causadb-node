@@ -4,6 +4,7 @@
 ▸ **simulateActions**(`actions`, `fixed?`, `interval?`, `observationNoise?`): `Promise`\<`any`\>
 
 Simulate actions on the model.
+Simulates the effects of specified actions on model outcomes, providing an estimation of the resulting changes.
 
 ## Parameters
 
@@ -19,5 +20,17 @@ Simulate actions on the model.
 `Promise`\<`any`\>
 
 A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
+
+**`Throws`**
+
+If the server request fails or returns an unexpected status code.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+const outcome = await model.simulateActions({ 'x': [0, 1] });
+console.log(outcome);
+```
 
 ___

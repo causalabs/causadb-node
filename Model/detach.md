@@ -4,6 +4,7 @@
 ▸ **detach**(`dataName`): `Promise`\<`void`\>
 
 Detach data from the model.
+Detaching removes the association of the data with the model.
 
 ## Parameters
 
@@ -14,5 +15,16 @@ Detach data from the model.
 ## Returns
 
 `Promise`\<`void`\>
+
+**`Throws`**
+
+If the server request fails.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+await model.detach('test-data');
+```
 
 ___

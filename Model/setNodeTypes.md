@@ -4,6 +4,7 @@
 ▸ **setNodeTypes**(`nodeTypes`): `Promise`\<`void`\>
 
 Set the node types of the model.
+Node types define the type of data each node represents.
 
 ## Parameters
 
@@ -14,5 +15,16 @@ Set the node types of the model.
 ## Returns
 
 `Promise`\<`void`\>
+
+**`Throws`**
+
+If the server request fails.
+
+**`Example`**
+
+```typescript
+const model = await client.getModel('test-model');
+await model.setNodeTypes({ 'x': 'continuous', 'y': 'categorical' });
+```
 
 ___

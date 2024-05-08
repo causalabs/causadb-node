@@ -11,10 +11,13 @@ Remove the data from the CausaDB system.
 
 Promise<void>
 
+**`Throws`**
+
+If the server request fails.
+
 **`Example`**
 
 ```typescript
-data.remove().then(() => {
-   console.log('Data removed');
-});
+const data = client.getData('test-data');
+await data.remove();
 ```
