@@ -33,8 +33,6 @@ export class Data {
 
     /**
      * Remove the data from the CausaDB system.
-     * @returns Promise<void>
-     * @throws {Error} If the server request fails.
      * @example
      * ```typescript
      * const data = client.getData('test-data');
@@ -53,7 +51,7 @@ export class Data {
     /**
      * Add data from a CSV file.
      * @param filepath The path to the CSV file.
-     * @returns Promise<void>
+     * @returns Promise that resolves when the data has been added.
      * @throws {Error} If pushing data to the server fails.
      * @example
      * ```typescript
@@ -83,7 +81,7 @@ export class Data {
     /**
      * Add data from a JSON object.
      * @param data The JSON object representing the data.
-     * @returns Promise<void>
+     * @returns Promise that resolves when the data has been added.
      * @throws {Error} If pushing data to the server fails.
      * @example
      * ```typescript
@@ -103,7 +101,7 @@ export class Data {
     /**
      * Pushes the data to the CausaDB server.
      * @param data The new data.
-     * @returns Promise<void>
+     * @returns Promise that resolves when the data has been added.
      * @throws {Error} If the server request fails.
      * @private
      */
