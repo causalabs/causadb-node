@@ -47,7 +47,7 @@ export class Model {
     /**
      * Remove the model from the CausaDB system.
      * Deletes the model's configuration and data from the server.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the model has been removed.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -68,7 +68,7 @@ export class Model {
      * Set the nodes of the model.
      * Nodes represent individual variables or features in the model.
      * @param nodes A list of node names.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the nodes have been set.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -111,7 +111,7 @@ export class Model {
      * Set the edges of the model.
      * Edges represent relationships between nodes.
      * @param edges A list of tuples representing edges between nodes.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the edges have been set.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -155,7 +155,7 @@ export class Model {
      * Set the node types of the model.
      * Node types define the type of data each node represents.
      * @param nodeTypes A dictionary of node types.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the node types have been set.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -198,7 +198,7 @@ export class Model {
      * Attach data to the model.
      * The data will be used during model training and inference.
      * @param dataName The name of the data to attach.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the data has been attached.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -219,7 +219,7 @@ export class Model {
      * Detach data from the model.
      * Detaching removes the association of the data with the model.
      * @param dataName The name of the data to detach.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the data has been detached.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -241,7 +241,7 @@ export class Model {
      * Training updates the model parameters based on the attached data.
      * @param wait Whether to wait for the model to finish training.
      * @param pollInterval The interval at which to poll the server for the model status.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the model has been trained.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
@@ -295,7 +295,7 @@ export class Model {
      * @param {Object} [fixed={}] A dictionary representing the fixed nodes.
      * @param {number} [interval=0.9] The interval at which to simulate the actions.
      * @param {boolean} [observationNoise=false] Whether to include observation noise.
-     * @returns {Promise<Object>} A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
+     * @returns Promise that resolves to the outcome of the simulated actions, including median, lower, and upper estimates.
      * @throws {Error} If the server request fails or returns an unexpected status code.
      * @example
      * ```typescript
@@ -338,7 +338,7 @@ export class Model {
     /**
      * Pushes the current configuration of the model to the CausaDB server.
      * This function ensures that any local changes to the model's configuration are reflected on the server.
-     * @returns {Promise<void>}
+     * @returns Promise that resolves when the configuration has been pushed.
      * @throws {Error} If the server request fails.
      * @private
      */
