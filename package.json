@@ -1,6 +1,6 @@
 {
   "name": "causadb",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Node client for CausaDB, a cloud platform for building and using causal AI.",
   "main": "index.js",
   "scripts": {
