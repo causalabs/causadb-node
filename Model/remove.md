@@ -10,6 +10,8 @@ Deletes the model's configuration and data from the server.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the model has been removed.
+
 **`Throws`**
 
 If the server request fails.

@@ -16,6 +16,8 @@ The data will be used during model training and inference.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the data has been attached.
+
 **`Throws`**
 
 If the server request fails.

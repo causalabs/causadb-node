@@ -10,6 +10,8 @@ This function ensures that any local changes to the model's configuration are re
 
 `Promise`\<`void`\>
 
+Promise that resolves when the configuration has been pushed.
+
 **`Throws`**
 
 If the server request fails.

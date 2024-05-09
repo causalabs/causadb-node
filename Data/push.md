@@ -15,7 +15,7 @@ Pushes the data to the CausaDB server.
 
 `Promise`\<`void`\>
 
-Promise<void>
+Promise that resolves when the data has been added.
 
 **`Throws`**
 

@@ -17,6 +17,8 @@ Training updates the model parameters based on the attached data.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the model has been trained.
+
 **`Throws`**
 
 If the server request fails.

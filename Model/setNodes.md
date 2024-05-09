@@ -16,6 +16,8 @@ Nodes represent individual variables or features in the model.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the nodes have been set.
+
 **`Throws`**
 
 If the server request fails.

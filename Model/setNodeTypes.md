@@ -16,6 +16,8 @@ Node types define the type of data each node represents.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the node types have been set.
+
 **`Throws`**
 
 If the server request fails.

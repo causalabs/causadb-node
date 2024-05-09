@@ -9,12 +9,6 @@ Remove the data from the CausaDB system.
 
 `Promise`\<`void`\>
 
-Promise<void>
-
-**`Throws`**
-
-If the server request fails.
-
 **`Example`**
 
 ```typescript

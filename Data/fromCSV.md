@@ -15,7 +15,7 @@ Add data from a CSV file.
 
 `Promise`\<`void`\>
 
-Promise<void>
+Promise that resolves when the data has been added.
 
 **`Throws`**
 

@@ -16,6 +16,8 @@ Edges represent relationships between nodes.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the edges have been set.
+
 **`Throws`**
 
 If the server request fails.

@@ -19,7 +19,7 @@ Simulates the effects of specified actions on model outcomes, providing an estim
 
 `Promise`\<`any`\>
 
-A dictionary representing the result of the actions, including median, lower, and upper outcome estimates.
+Promise that resolves to the outcome of the simulated actions, including median, lower, and upper estimates.
 
 **`Throws`**
 

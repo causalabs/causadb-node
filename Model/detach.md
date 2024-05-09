@@ -16,6 +16,8 @@ Detaching removes the association of the data with the model.
 
 `Promise`\<`void`\>
 
+Promise that resolves when the data has been detached.
+
 **`Throws`**
 
 If the server request fails.

@@ -15,7 +15,7 @@ Add data from a JSON object.
 
 `Promise`\<`void`\>
 
-Promise<void>
+Promise that resolves when the data has been added.
 
 **`Throws`**
 
