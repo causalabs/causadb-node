@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { Data } from './data';
 import { Model } from './model';
 import { getCausadbUrl } from './utils';
@@ -10,6 +10,7 @@ const causadbUrl = getCausadbUrl();
  */
 export class CausaDB {
     public tokenSecret: string | null;
+    private readonly axios: Axios
 
     /**
      * Initializes the CausaDB client. This creates a connection to the CausaDB API that allows you to interact with the cloud service, primarily CRUD operations on models and data.
@@ -22,6 +23,7 @@ export class CausaDB {
      */
     constructor() {
         this.tokenSecret = null;
+      this.axios = axios.create()
     }
 
     /**
@@ -37,7 +39,7 @@ export class CausaDB {
      */
     async setToken(tokenSecret: string): Promise<boolean> {
         const headers = { 'token': tokenSecret };
-        const response = await axios.get(`${causadbUrl}/account`, { headers });
+        const response = await this.axios.get(`${causadbUrl}/account`, { headers });
         if (response.status === 200) {
             this.tokenSecret = tokenSecret;
             return true;
@@ -92,7 +94,7 @@ export class CausaDB {
     async getModel(modelName: string): Promise<Model> {
         const headers = { 'token': this.tokenSecret };
         try {
-            await axios.get(`${causadbUrl}/models/${modelName}`, { headers });
+            await this.axios.get(`${causadbUrl}/models/${modelName}`, { headers });
             return Model.create(modelName, this);
         } catch (error) {
             throw new Error('CausaDB server request failed');
@@ -113,7 +115,7 @@ export class CausaDB {
     async listModels(): Promise<Model[]> {
         const headers = { 'token': this.tokenSecret };
         try {
-            const response = await axios.get(`${causadbUrl}/models`, { headers });
+            const response = await this.axios.get(`${causadbUrl}/models`, { headers });
             return await Promise.all(response.data.models.map((modelSpec: any) => Model.create(modelSpec.name, this)));
         } catch (error) {
             throw new Error('CausaDB server request failed');
@@ -135,7 +137,7 @@ export class CausaDB {
     async getData(dataName: string): Promise<Data> {
         const headers = { 'token': this.tokenSecret };
         try {
-            const data_list: any = await axios.get(`${causadbUrl}/data`, { headers });
+            const data_list: any = await this.axios.get(`${causadbUrl}/data`, { headers });
             const data_names = data_list.data.data.map((dataSpec: any) => dataSpec.name);
             if (data_names.includes(dataName)) {
                 return new Data(dataName, this);
@@ -161,7 +163,7 @@ export class CausaDB {
     async listData(): Promise<Data[]> {
         const headers = { 'token': this.tokenSecret };
         try {
-            const response = await axios.get(`${causadbUrl}/data`, { headers });
+            const response = await this.axios.get(`${causadbUrl}/data`, { headers });
             return response.data.data.map((dataSpec: any) => new Data(dataSpec.name, this));
         } catch (error) {
             throw new Error('CausaDB client failed to connect to server');
