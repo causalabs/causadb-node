@@ -23,7 +23,7 @@ export class CausaDB {
      */
     constructor() {
         this.tokenSecret = null;
-      this.axios = axios.create()
+        this.axios = axios.create()
     }
 
     /**
