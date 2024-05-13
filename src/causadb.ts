@@ -29,6 +29,16 @@ export class CausaDB {
     constructor(tokenSecret?: string) {
         this.tokenSecret = tokenSecret
         this.axios = axios.create()
+        // common response handling
+        this.axios.interceptors.response.use((response) => response, (error) => {
+          if (error.response.status === 401) {
+            throw new Error('Invalid token');
+          }
+          if (error.response.status === 403) {
+            throw new Error('Invalid token');
+          }
+          throw new Error('CausaDB server request failed');
+        })
     }
 
     /**
