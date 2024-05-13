@@ -21,7 +21,7 @@ The data object.
 
 ```typescript
 const client = new CausaDB();
-await client.setToken('test-token-id', 'test-token-secret');
+await client.setToken('test-token-secret');
 const data = client.addData('test-data');
 await data.fromCSV('path/to/data.csv');
 ```

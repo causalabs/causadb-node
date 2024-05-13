@@ -25,7 +25,7 @@ If the model is not found.
 
 ```typescript
 const client = new CausaDB();
-await client.setToken('test-token-id', 'test-token-secret');
+await client.setToken('test-token-secret');
 const model = await client.getModel('test-model');
 ```
 

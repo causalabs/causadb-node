@@ -25,7 +25,7 @@ If pushing data to the server fails.
 
 ```typescript
 const client = new CausaDB();
-await client.setToken('test-token-id', 'test-token-secret');
+await client.setToken('test-token-secret');
 const data = new Data('test-data', client);
 await data.fromCSV('path/to/data.csv');
 ```
