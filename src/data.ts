@@ -22,7 +22,7 @@ export class Data {
      * import { CausaDB, Data } from './causadb';
      *
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const data = new Data('test-data', client);
      * ```
      */
@@ -56,7 +56,7 @@ export class Data {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const data = new Data('test-data', client);
      * await data.fromCSV('path/to/data.csv');
      * ```
@@ -86,7 +86,7 @@ export class Data {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const data = new Data('test-data', client);
      * await data.fromJSON({
      *     "column1": [1, 2, 3],

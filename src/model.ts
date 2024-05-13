@@ -32,7 +32,7 @@ export class Model {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const model = await Model.create('test-model', client);
      * ```
      */
