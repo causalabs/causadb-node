@@ -1,6 +1,6 @@
 # CausaDB Node Client
 
-A TypeNode.jsScript client library for interacting with the CausaDB API. This library allows you to create, manage, and deploy causal models directly from code.
+A Node.js client library for interacting with the CausaDB API. This library allows you to create, manage, and deploy causal models directly from code.
 
 ## Documentation
 
