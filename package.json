@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
+    "clean": "rm -rf node_modules && rm -rf coverage && rm -rf dist",
     "build": "tsc",
     "test": "jest --verbose --runInBand --coverage",
     "docs": "typedoc --disableSources --out docs --plugin typedoc-plugin-markdown ./src && node ./scripts/convert_docs.js",
@@ -29,5 +30,6 @@
   },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "packageManager": "yarn@1.22.19+sha256.732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e"
 }
