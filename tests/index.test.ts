@@ -12,18 +12,16 @@ let client: CausaDB;
 
 beforeEach(async () => {
     client = new CausaDB();
-    await client.setToken("test-token-id", causadbToken);
+    await client.setToken(causadbToken);
 });
 
 test('end-to-end workflow', async () => {
     // client initialization
     expect(client).not.toBeNull();
-    expect(client.tokenId).toBe("test-token-id");
     expect(client.tokenSecret).toBe(causadbToken);
 
     // bad tokens
-    await expect(client.setToken("bad-token-id", "bad-token-secret")).rejects.toThrow();
-    expect(client.tokenId).toBe("test-token-id");
+    await expect(client.setToken("bad-token-secret")).rejects.toThrow();
     expect(client.tokenSecret).toBe(causadbToken);
 
     // data add

@@ -9,7 +9,6 @@ const causadbUrl = getCausadbUrl();
  * CausaDB client for interacting with the CausaDB API.
  */
 export class CausaDB {
-    public tokenId: string | null;
     public tokenSecret: string | null;
 
     /**
@@ -22,27 +21,24 @@ export class CausaDB {
      * ```
      */
     constructor() {
-        this.tokenId = null;
         this.tokenSecret = null;
     }
 
     /**
      * Set the token for the CausaDB client. This is required to authenticate with the CausaDB API.
-     * @param tokenId Token ID provided by CausaDB.
      * @param tokenSecret Token secret provided by CausaDB.
      * @returns True if the token is valid, False otherwise.
      * @throws {Error} If the token is invalid.
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * const valid = await client.setToken('test-token-id', 'test-token-secret');
+     * const valid = await client.setToken('test-token-secret');
      * ```
      */
-    async setToken(tokenId: string, tokenSecret: string): Promise<boolean> {
+    async setToken(tokenSecret: string): Promise<boolean> {
         const headers = { 'token': tokenSecret };
         const response = await axios.get(`${causadbUrl}/account`, { headers });
         if (response.status === 200) {
-            this.tokenId = tokenId;
             this.tokenSecret = tokenSecret;
             return true;
         } else {
@@ -57,7 +53,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const model = await client.createModel('test-model');
      * ```
      */
@@ -72,7 +68,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const data = client.addData('test-data');
      * await data.fromCSV('path/to/data.csv');
      * ```
@@ -89,7 +85,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const model = await client.getModel('test-model');
      * ```
      */
@@ -110,7 +106,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const models = await client.listModels();
      * ```
      */
@@ -132,7 +128,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const data = await client.getData('test-data');
      * ```
      */
@@ -158,7 +154,7 @@ export class CausaDB {
      * @example
      * ```typescript
      * const client = new CausaDB();
-     * await client.setToken('test-token-id', 'test-token-secret');
+     * await client.setToken('test-token-secret');
      * const dataList = await client.listData();
      * ```
      */
