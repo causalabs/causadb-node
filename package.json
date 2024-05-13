@@ -13,7 +13,10 @@
   },
   "author": "Jordan Hart <jordan@causa.tech>",
   "license": "MIT",
-  "repository": "https://github.com/causalabs/causadb-node.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/causalabs/causadb-node.git"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
@@ -31,5 +34,12 @@
   "files": [
     "dist/**/*"
   ],
-  "packageManager": "yarn@1.22.19+sha256.732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e"
+  "packageManager": "yarn@1.22.19+sha256.732620bac8b1690d507274f025f3c6cfdc3627a84d9642e38a07452cc00e0f2e",
+  "bugs": {
+    "url": "https://github.com/causalabs/causadb-node/issues"
+  },
+  "homepage": "https://github.com/causalabs/causadb-node#readme",
+  "directories": {
+    "test": "tests"
+  }
 }
