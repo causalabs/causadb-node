@@ -19,10 +19,14 @@ export class CausaDB {
      * import { CausaDB } from './causadb';
      *
      * const client = new CausaDB();
+     * 
+     * // or with a token
+     * 
+     * const client = new CausaDB('test-token-secret');
      * ```
      */
-    constructor() {
-        this.tokenSecret = null;
+    constructor(tokenSecret?: string) {
+        this.tokenSecret = tokenSecret
         this.axios = axios.create()
     }
 
