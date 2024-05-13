@@ -19,7 +19,7 @@ test('end-to-end workflow', async () => {
     // client initialization
     expect(client).not.toBeNull();
     expect(client.tokenId).toBe("test-token-id");
-    expect(client.tokenSecret).toBe(causadbToken);
+    expect(client.tokenSecret).toBe(causadbToken); // or not to be?
 
     // bad tokens
     await expect(client.setToken("bad-token-id", "bad-token-secret")).rejects.toThrow();
