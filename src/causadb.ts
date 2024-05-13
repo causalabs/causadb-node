@@ -2,6 +2,7 @@ import axios, { Axios } from 'axios';
 import { Data } from './data';
 import { Model } from './model';
 import { getCausadbUrl } from './utils';
+import { Account } from './account';
 
 const causadbUrl = getCausadbUrl();
 
@@ -9,7 +10,7 @@ const causadbUrl = getCausadbUrl();
  * CausaDB client for interacting with the CausaDB API.
  */
 export class CausaDB {
-    public tokenSecret: string | null;
+    public tokenSecret?: string;
     private readonly axios: Axios
 
     /**
@@ -40,6 +41,7 @@ export class CausaDB {
      * const client = new CausaDB();
      * const valid = await client.setToken('test-token-secret');
      * ```
+     * @deprecated preferable to set the token in the constructor and use the verifyAccount method to check access
      */
     async setToken(tokenSecret: string): Promise<boolean> {
         const headers = { 'token': tokenSecret };
@@ -50,6 +52,26 @@ export class CausaDB {
         } else {
             throw new Error('Invalid token');
         }
+    }
+
+    /**
+     * Can be used to verify the account and check auth.
+     * @param token Token secret provided by CausaDB.
+     * @returns account details
+     * @throws {Error} If the token is invalid.
+     * @example
+     * ```typescript
+     * const client = new CausaDB();
+     * const account = await client.verifyAccount;
+     * ```
+     */
+    async verifyAccount(): Promise<Account> {
+        const headers = { 'token': this.tokenSecret };
+        const response = await this.axios.get(`${causadbUrl}/account`, { headers });
+        const account = {
+          title: 'CausaDB Account' // TODO: This is a placeholder. The actual account object should be returned by the API.
+        }
+        return account;
     }
 
     /**
