@@ -77,7 +77,7 @@ export class CausaDB {
      */
     async verifyAccount(): Promise<Account> {
         const headers = { 'token': this.tokenSecret };
-        const response = await this.axios.get(`${causadbUrl}/account`, { headers });
+        await this.axios.get(`${causadbUrl}/account`, { headers });
         const account = {
           title: 'CausaDB Account' // TODO: This is a placeholder. The actual account object should be returned by the API.
         }
@@ -133,6 +133,8 @@ export class CausaDB {
             await this.axios.get(`${causadbUrl}/models/${modelName}`, { headers });
             return Model.create(modelName, this);
         } catch (error) {
+            console.error(error)
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -154,6 +156,7 @@ export class CausaDB {
             const response = await this.axios.get(`${causadbUrl}/models`, { headers });
             return await Promise.all(response.data.models.map((modelSpec: any) => Model.create(modelSpec.name, this)));
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -181,6 +184,7 @@ export class CausaDB {
                 throw new Error('Data ' + dataName + ' not found');
             }
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -202,6 +206,7 @@ export class CausaDB {
             const response = await this.axios.get(`${causadbUrl}/data`, { headers });
             return response.data.data.map((dataSpec: any) => new Data(dataSpec.name, this));
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB client failed to connect to server');
         }
     }

@@ -60,6 +60,7 @@ export class Model {
         try {
             await axios.delete(`${causadbUrl}/models/${this.modelName}`, { headers });
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -82,6 +83,7 @@ export class Model {
             this.config.nodes = nodes;
             await this.push();
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -103,6 +105,7 @@ export class Model {
             const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
             return response.data.details.config.nodes;
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -125,6 +128,7 @@ export class Model {
             this.config.edges = edges;
             await this.push();
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -147,6 +151,7 @@ export class Model {
             const edges = response.data.details.config.edges;
             return edges.map((edge: any) => [edge[0], edge[1]]);
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -169,6 +174,7 @@ export class Model {
             this.config.nodeTypes = nodeTypes;
             await this.push();
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -190,6 +196,7 @@ export class Model {
             const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
             return response.data.details.config.nodeTypes;
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -211,6 +218,7 @@ export class Model {
         try {
             await axios.post(`${causadbUrl}/models/${this.modelName}/attach/${dataName}`, {}, { headers });
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -218,20 +226,20 @@ export class Model {
     /**
      * Detach data from the model.
      * Detaching removes the association of the data with the model.
-     * @param dataName The name of the data to detach.
      * @returns Promise that resolves when the data has been detached.
      * @throws {Error} If the server request fails.
      * @example
      * ```typescript
      * const model = await client.getModel('test-model');
-     * await model.detach('test-data');
+     * await model.detach();
      * ```
      */
-    async detach(dataName: string): Promise<void> {
+    async detach(): Promise<void> {
         const headers = { 'token': this.client.tokenSecret };
         try {
             await axios.delete(`${causadbUrl}/models/${this.modelName}/detach`, { headers });
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -262,6 +270,7 @@ export class Model {
                 }
             }
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -283,6 +292,7 @@ export class Model {
             const response = await axios.get(`${causadbUrl}/models/${this.modelName}`, { headers });
             return response.data.details.status;
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -347,6 +357,7 @@ export class Model {
         try {
             await axios.post(`${causadbUrl}/models/${this.modelName}`, this.config, { headers });
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -446,7 +457,7 @@ export class Model {
      * console.log(attributions);
      * ```
      */
-    async causalAttributions(outcome: string, normalise: boolean = false): Promise<any> {
+    async causalAttributions(outcome: string, normalise = false): Promise<any> {
         const headers = { 'token': this.client.tokenSecret };
         const query = {
             outcome,

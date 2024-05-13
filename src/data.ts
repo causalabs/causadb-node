@@ -44,6 +44,7 @@ export class Data {
         try {
             await axios.delete(`${causadbUrl}/data/${this.dataName}`, { headers });
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB server request failed');
         }
     }
@@ -113,6 +114,7 @@ export class Data {
                 throw new Error(`Failed to push data: ${response.data.message}`);
             }
         } catch (error) {
+            console.error(error)
             throw new Error('CausaDB client failed to connect to server');
         }
     }
