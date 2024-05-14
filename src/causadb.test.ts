@@ -1,30 +1,27 @@
-import { CausaDB } from './causadb';
+import { CausaDB } from './causadb'
 
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
-const causadbToken: string = process.env.CAUSADB_TOKEN || "";
-
-let client: CausaDB;
+let client: CausaDB
 
 describe('CausaDB', () => {
-  
   describe('constructor', () => {
     test('with token', async () => {
-      client = new CausaDB(causadbToken);
-      expect(client).toBeDefined();
+      client = new CausaDB('test-token')
+      expect(client).toBeDefined()
     })
 
     test('without token', async () => {
-      client = new CausaDB();
-      expect(client).toBeDefined();
+      client = new CausaDB()
+      expect(client).toBeDefined()
     })
 
     test('without token and set after', async () => {
-      client = new CausaDB();
-      client.tokenSecret = causadbToken;
-      expect(client).toBeDefined();
+      client = new CausaDB()
+      client.tokenSecret = 'test-token'
+      expect(client).toBeDefined()
     })
   })
 })

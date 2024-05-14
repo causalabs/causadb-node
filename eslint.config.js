@@ -1,5 +1,4 @@
-// @ts-check
-
+import globals from "globals";
 import eslint from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
 import tseslint from 'typescript-eslint'
@@ -29,11 +28,13 @@ export default [
     name: 'tests',
     files: ["**/*.test.ts"],
     ...jestlint.configs['flat/recommended'],
-    env: {
-      "jest/globals": true
-    },
     rules: {
       'jest/no-disabled-tests': 'warn',  
+    },
+    languageOptions: {
+      globals: {
+          ...globals.jest,
+      }
     }
   }
 ]
