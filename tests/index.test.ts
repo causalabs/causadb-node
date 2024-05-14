@@ -1,6 +1,4 @@
 import { CausaDB } from '../src/causadb';
-import { Model } from '../src/model';
-import { Data } from '../src/data';
 
 import dotenv from 'dotenv';
 
@@ -11,6 +9,25 @@ const causadbToken: string = process.env.CAUSADB_TOKEN || "";
 let client: CausaDB;
 
 describe('CausaDB', () => {
+  
+  describe('constructor', () => {
+    test('with token', async () => {
+      client = new CausaDB(causadbToken);
+      expect(client).toBeDefined();
+    })
+
+    test('without token', async () => {
+      client = new CausaDB();
+      expect(client).toBeDefined();
+    })
+
+    test('without token and set after', async () => {
+      client = new CausaDB();
+      client.tokenSecret = causadbToken;
+      expect(client).toBeDefined();
+    })
+  })
+
   describe('unhappy path', () => {
     test('bad token', async () => {
       // bad tokens
@@ -125,7 +142,7 @@ describe('CausaDB', () => {
 
       // model detach
       const modelDetach = await client.getModel("test-model-12345");
-      await modelDetach.detach("test-data-2");
+      await modelDetach.detach();
       await expect(modelDetach.train()).rejects.toThrow();
 
       // data remove
