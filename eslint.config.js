@@ -27,7 +27,7 @@ export default [
   },
   {
     name: 'tests',
-    files: ["tests/**/*"],
+    files: ["**/*.test.ts"],
     ...jestlint.configs['flat/recommended'],
     env: {
       "jest/globals": true

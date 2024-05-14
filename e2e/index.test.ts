@@ -10,24 +10,6 @@ let client: CausaDB;
 
 describe('CausaDB', () => {
   
-  describe('constructor', () => {
-    test('with token', async () => {
-      client = new CausaDB(causadbToken);
-      expect(client).toBeDefined();
-    })
-
-    test('without token', async () => {
-      client = new CausaDB();
-      expect(client).toBeDefined();
-    })
-
-    test('without token and set after', async () => {
-      client = new CausaDB();
-      client.tokenSecret = causadbToken;
-      expect(client).toBeDefined();
-    })
-  })
-
   describe('unhappy path', () => {
     test('bad token', async () => {
       // bad tokens
@@ -48,7 +30,7 @@ describe('CausaDB', () => {
       expect(client.tokenSecret).toBe(causadbToken);
 
       // data add
-      await client.addData("test-data-2").fromCSV("tests/test-data.csv");
+      await client.addData("test-data-2").fromCSV("e2e/test-data.csv");
 
       // data list
       const data_list = await client.listData();
