@@ -99,6 +99,36 @@ export class Data {
     }
 
     /**
+     * Add data from a URL.
+     * @param url The URL to the CSV file.
+     * @returns Promise that resolves when the data has been added.
+     * @throws {Error} If pushing data to the server fails.
+     * @example
+     * ```typescript
+     * const client = new CausaDB();
+     * await client.setToken('test-token-secret');
+     * const data = new Data('test-data', client);
+     * await data.fromURL('https://example.com/data.csv');
+     * ```
+     */
+    async fromURL(url: string): Promise<void> {
+        const headers = { 'token': this.client.tokenSecret };
+        try {
+            const response = await axios.post(
+                `${causadbUrl}/data/${this.dataName}/url`,
+                { url },
+                { headers }
+            );
+            if (response.data.status !== 'success') {
+                throw new Error(`Failed to push data: ${response.data.message}`);
+            }
+        } catch (error) {
+            throw new Error('CausaDB client failed to connect to server');
+        }
+    }
+
+
+    /**
      * Pushes the data to the CausaDB server.
      * @param data The new data.
      * @returns Promise that resolves when the data has been added.
